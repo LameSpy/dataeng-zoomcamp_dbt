@@ -10,7 +10,7 @@ taxi_riders:
       threads: 4
       job_retries: 2
       location: asia-east2
-      keyfile: "{{env_var('GOOGLE_SERVICE_ACCOUNT')}}"
+      keyfile: "{{env_var('DBT_GOOGLE_KEYFILE')}}"
 
     pr:
       type: bigquery
@@ -20,7 +20,7 @@ taxi_riders:
       threads: 4
       job_retries: 2
       location: asia-east2
-      keyfile: "{{env_var('GOOGLE_SERVICE_ACCOUNT')}}"
+      keyfile: "{{env_var('DBT_GOOGLE_KEYFILE')}}"
 
     prod:
       type: bigquery
@@ -30,6 +30,6 @@ taxi_riders:
       threads: 4
       job_retries: 2
       location: asia-east2
-      keyfile: "{{env_var('GOOGLE_SERVICE_ACCOUNT')}}"
+      keyfile: "{{env_var('DBT_GOOGLE_KEYFILE')}}"
 
       

@@ -9,9 +9,11 @@ on:
     #   - tests/**
 
 env:
-  DBT_BQ_PROJECT: ${{ vars.DBT_BQ_PROJECT }} 
   DBT_PROFILES_DIR: ./
-  GOOGLE_SERVICE_ACCOUNT: ${{secrets.GOOGLE_SERVICE_ACCOUNT}}
+  DBT_BQ_PROJECT: ${{ vars.DBT_BQ_PROJECT }} 
+  DBT_GOOGLE_KEYFILE: /tmp/google/google-service-account.json
+ # the contents of the keyfile pulled from GitHub Actions secrets 
+  KEYFILE_CONTENTS: ${{secrets.GOOGLE_SERVICE_ACCOUNT}}
 
 
 jobs:
@@ -20,6 +22,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Prep Google keyfile
+    - run: mkdir -p "$(dirname $DBT_GOOGLE_KEYFILE)" 
+    - run: echo "$KEYFILE_CONTENTS" > $DBT_GOOGLE_KEYFILE
+    
     - name: checkout PR branch
       uses: actions/checkout@master
 
