@@ -1,0 +1,72 @@
+name: PR Transformation and Comparison
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: ['dbt_datacamp_prod']
+    paths:
+      - models/**
+      - seeds/**
+      - tests/**
+
+env:
+  AUTH_PROVIDER_BQ: ${{ secrets.AUTH_PROVIDER_BQ }} 
+  CLIENT_EMAIL_BQ: ${{ secrets.CLIENT_EMAIL_BQ }}
+  CLIENT_ID_BQ: ${{ secrets.CLIENT_ID_BQ }}
+  CLIENT_X509_BQ: ${{ secrets.CLIENT_X509_BQ }}
+  PRIVATE_KEY_BQ: ${{ secrets.PRIVATE_KEY_BQ }}
+  PROJECT_ID_BD: ${{ secrets.PROJECT_ID_BD }}
+  TOKER_URI_BQ: ${{ secrets.TOKER_URI_BQ }}
+  TYPE_BIGQUERY: ${{ secrets.TYPE_BIGQUERY }}
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Setup DBT + Piperider
+      run: |
+        pip install dbt-bigquery
+        pip install piperider['bigquery']
+    - name: Run DBT on PR environment
+      run: dbt build --target pr
+
+    - name: Profile on PR environment
+      run: piperider run --datasource taxi_riders_pr --dbt-state target -o /tmp/pr-report/
+
+    - name: Profile on PROD environment
+      run: piperider run --datasource taxi_riders_prod -o /tmp/prod-report/
+
+    - name: Compare and Prepare
+      run: |
+        piperider compare-reports \
+          --debug \
+          --base /tmp/prod-report/run.json \
+          --target /tmp/pr-report/run.json \
+          --output comparison-report/ \
+          --tables-from target-only
+        zip -r comparison-report.zip comparison-report/
+    - uses: actions/upload-artifact@v3
+      with:
+        name: comparison-report-artifact
+        path: comparison-report.zip
+
+    - name: Prepare Comparison Summary
+      run: |
+        echo "# :bar_chart: Piperider Comparison Summary" > summary.md
+        cat comparison-report/summary.md >> summary.md
+        echo -e "\n" >> summary.md
+        echo "## :paperclip: Generated Comparison Report ZIP" >> summary.md
+        echo "Find it in the [Github Action Runs Page](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> summary.md
+    - name: Create PR Comment
+      uses: peter-evans/create-or-update-comment@v2.1.0
+      with:
+        issue-number: ${{ github.event.number }}
+        body-file: summary.md
