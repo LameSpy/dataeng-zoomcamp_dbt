@@ -5,61 +5,31 @@ taxi_riders:
     dev:
       type: bigquery
       method: service-account
-      project: datacamp-378414
+      project: "{{env_var('DBT_BQ_PROJECT')}}"
       dataset: dbt_dev_datacamp
       threads: 4
       job_retries: 2
       location: asia-east2
-      keyfile_json:
-        type: "{{ env_var('TYPE_BEGQUERY') | as_text }}",
-        project_id: "{{ env_var('PROJECT_ID_BQ') | as_text }}",
-        private_key_id: "{{ env_var('PRIVATE_KEY_ID_BQ') | as_text }}",
-        private_key: "{{ env_var('PRIVATE_KEY_BQ') | as_text }}",
-        client_email: "{{ env_var('CLIENT_EMAIL_BQ') | as_text }}",
-        client_id: "{{ env_var('CLIENT_ID_BQ') | as_text }}",
-        auth_uri: "{{ env_var('AUTH_URI') | as_text }}",
-        token_uri: "{{ env_var('TOKER_URI_BQ') | as_text }}",
-        auth_provider_x509_cert_url: "{{ env_var('AUTH_PROVIDER_BQ') | as_text }}",
-        client_x509_cert_url: "{{ env_var('CLIENT_X509_BQ') | as_text }}"
+      keyfile: "{{env_var('GOOGLE_SERVICE_ACCOUNT')}}"
 
     pr:
       type: bigquery
       method: service-account
-      project: datacamp-378414
+      project: "{{env_var('DBT_BQ_PROJECT')}}"
       dataset: dbt_pr_datacamp
       threads: 4
       job_retries: 2
       location: asia-east2
-      keyfile_json:
-        type: "{{ env_var('TYPE_BEGQUERY') | as_text }}",
-        project_id: "{{ env_var('PROJECT_ID_BQ') | as_text }}",
-        private_key_id: "{{ env_var('PRIVATE_KEY_ID_BQ') | as_text }}",
-        private_key: "{{ env_var('PRIVATE_KEY_BQ') | as_text }}",
-        client_email: "{{ env_var('CLIENT_EMAIL_BQ') | as_text }}",
-        client_id: "{{ env_var('CLIENT_ID_BQ') | as_text }}",
-        auth_uri: "{{ env_var('AUTH_URI') | as_text }}",
-        token_uri: "{{ env_var('TOKER_URI_BQ') | as_text }}",
-        auth_provider_x509_cert_url: "{{ env_var('AUTH_PROVIDER_BQ') | as_text }}",
-        client_x509_cert_url: "{{ env_var('CLIENT_X509_BQ') | as_text }}"
+      keyfile: "{{env_var('GOOGLE_SERVICE_ACCOUNT')}}"
 
     prod:
       type: bigquery
       method: service-account
-      project: datacamp-378414
+      project: "{{env_var('DBT_BQ_PROJECT')}}"
       dataset: dbt_prod_datacamp
       threads: 4
       job_retries: 2
       location: asia-east2
-      keyfile_json:
-        type: "{{ env_var('TYPE_BEGQUERY') | as_text }}",
-        project_id: "{{ env_var('PROJECT_ID_BQ') | as_text }}",
-        private_key_id: "{{ env_var('PRIVATE_KEY_ID_BQ') | as_text }}",
-        private_key: "{{ env_var('PRIVATE_KEY_BQ') | as_text }}",
-        client_email: "{{ env_var('CLIENT_EMAIL_BQ') | as_text }}",
-        client_id: "{{ env_var('CLIENT_ID_BQ') | as_text }}",
-        auth_uri: "{{ env_var('AUTH_URI') | as_text }}",
-        token_uri: "{{ env_var('TOKER_URI_BQ') | as_text }}",
-        auth_provider_x509_cert_url: "{{ env_var('AUTH_PROVIDER_BQ') | as_text }}",
-        client_x509_cert_url: "{{ env_var('CLIENT_X509_BQ') | as_text }}"
+      keyfile: "{{env_var('GOOGLE_SERVICE_ACCOUNT')}}"
 
       
