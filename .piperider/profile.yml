@@ -1,0 +1,3 @@
+cloud_config:
+  default_project: LameSpy/default
+  auto_upload: true

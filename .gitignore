@@ -3,4 +3,3 @@ dbt_packages/
 logs/
 week*
 .user.yml
-.piperider
