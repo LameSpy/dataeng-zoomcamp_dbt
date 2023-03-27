@@ -24,5 +24,5 @@ from tripdata
 where rn = 1
 {%- if var('is_test_run', default=True) %}
 {# we can changa var in cli. Use this dbt run --select stg_green_tripdata --var 'is_test_run: false' #}
-    limit 100
+    limit 50
 {% endif -%}
