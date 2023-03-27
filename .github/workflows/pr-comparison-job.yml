@@ -3,10 +3,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
     branches: ['main']
-    paths:
-      - models/**
-      - seeds/**
-      - tests/**
+    # paths:
+    #   - models/**
+    #   - seeds/**
+    #   - tests/**
 
 env:
   DBT_BQ_PROJECT: ${{ vars.DBT_BQ_PROJECT }} 
