@@ -3,3 +3,4 @@ dbt_packages/
 logs/
 week*
 .user.yml
+conn
