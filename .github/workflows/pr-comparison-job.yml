@@ -73,7 +73,7 @@ jobs:
 
 
     - name: Create PR Comment
-      uses: peter-evans/create-or-update-comment@v2.1.0
+      uses: LameSpy/create-or-update-comment@main
       with:
         issue-number: ${{ github.event.number }}
         body-file: tmp/piperider/comparison/summary.md
