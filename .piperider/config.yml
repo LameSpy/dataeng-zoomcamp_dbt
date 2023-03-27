@@ -1,0 +1,25 @@
+# piperider config
+dataSources:
+- name: taxi_riders_dev
+  type: bigquery
+  dbt:
+    profile: taxi_riders
+    target: dev
+    projectDir: .
+- name: taxi_riders_pr
+  type: bigquery
+  dbt:
+    profile: taxi_riders
+    target: pr
+    projectDir: .
+- name: taxi_riders_prod
+  type: bigquery
+  dbt:
+    profile: taxi_riders
+    target: prod
+    projectDir: .
+
+profiler:
+  table:
+    # the maximum row count to profile. (Default unlimited)
+    limit: 10000
