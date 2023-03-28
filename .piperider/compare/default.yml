@@ -7,7 +7,7 @@ base:
   piperider:
     command: piperider run
 target:
-  branch: dbt_datacamp_dev
+  branch: dev
   dbt:
     commands:
     - dbt deps

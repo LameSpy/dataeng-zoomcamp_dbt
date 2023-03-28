@@ -4,3 +4,5 @@ logs/
 week*
 .user.yml
 conn
+.envrc
+profiles2.yml
