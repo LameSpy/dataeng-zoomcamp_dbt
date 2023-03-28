@@ -1,0 +1,15 @@
+version: 2
+metrics:
+  - name: average_distance
+    label: Average Distance
+    model: ref('fact_trips')
+    description: "The average trip distance"
+
+    calculation_method: count
+    expression: vendorid
+
+    timestamp: pickup_datetime
+    time_grains: [month, quarter, year]
+
+    tags:
+    - piperider
