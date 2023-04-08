@@ -1,7 +1,20 @@
-# dataeng-zoomcamp1!
+## datacamp обзор
 
-dbt build --profiles-dir C:\Users\Дмитрий\WorkFolder\Программирование\GitHub\dataeng-zoomcamp_dbt\conn\
+* [PRF analysis for digital marketing](#prf-analysis)
 
 
+## PRF analysis
+На основе полученных данных была проведена аналитика с помощью метода PRF. 
+[Для потребителей был создан дашборд с помощью Looker.](https://lookerstudio.google.com/reporting/1fdc9014-ef4a-4bdc-916b-e6b635726da1)
+<br>[Решение SQL можно посмотреть здесь.](https://github.com/LameSpy/dataeng-zoomcamp_dbt/tree/main/models/adhoc)
 
-C:\\Users\\Дмитрий\\WorkFolder\\Программирование\\GitHub\\dataeng-zoomcamp_dbt
+Полученные данные можно использовать:
+* Для оптимизации рекламных кампаний
+* Для принятия стратегических решений
+* Для оценки текущего положения
+
+Для реализации использовались следующие инструменты:
+* SQL - DBT
+* BigQuery
+* Looker
+* GitHub
