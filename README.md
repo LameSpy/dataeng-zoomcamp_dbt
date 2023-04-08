@@ -1,10 +1,10 @@
 ## datacamp dbt project обзор
 
-* [PRF analysis for digital marketing](#prf-analysis)
+* [RFM analysis for digital marketing](#RFM-analysis)
 
 
-## PRF analysis
-На основе полученных данных была проведена аналитика с помощью метода PRF. 
+## RFM analysis
+На основе полученных данных была проведена аналитика с помощью метода RFM. 
 [Для потребителей был создан дашборд с помощью Looker.](https://lookerstudio.google.com/reporting/1fdc9014-ef4a-4bdc-916b-e6b635726da1)
 <br>[Решение SQL можно посмотреть здесь.](https://github.com/LameSpy/dataeng-zoomcamp_dbt/tree/main/models/adhoc)
 
