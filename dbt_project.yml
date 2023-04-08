@@ -38,6 +38,8 @@ models:
       materialized: view
     core:
       materialized: table 
+    adhoc:
+      materialized: table 
 
 seeds:
   taxi_rides_ny:
