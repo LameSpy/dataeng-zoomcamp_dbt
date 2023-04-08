@@ -1,3 +1,4 @@
+-- Читаем данные, задаем фильр на нужную дату. Добавляем доп столбцы с первым и последним днем месяца
 with stage as (
 SELECT 
 DATE_TRUNC(DATE(sales_date), MONTH) AS segment_date,
@@ -10,6 +11,7 @@ from {{ref('SQL_test_data')}}
 where sales_date >= '2021-01-01'
 ),
 
+-- Рассчитываем основные показатели
 group_table as (
 select
 segment_date,
@@ -21,6 +23,7 @@ from stage
 group by segment_date, user_id
 ),
 
+-- Считаем перцентиль по каждому месяцу учитывая направленность сортировки
 add_percentil as (
 select *,
 PERCENT_RANK () over(partition by segment_date order by recency desc, frequency asc, monetary asc) as recency_percent,
@@ -29,6 +32,7 @@ PERCENT_RANK () over(partition by segment_date order by monetary asc, frequency 
 from group_table
 ),
 
+-- добавляем финальные score. Для разбивки на 5 категорий использую case when
 make_segment as (
 select 
 segment_date,
@@ -60,6 +64,7 @@ end monetary_score
 from add_percentil
 ),
 
+-- добавляю сегмент на основе score
 add_rfm_segment as (
 select 
 *,
@@ -79,7 +84,8 @@ else 'Other'
 end RFM_SEGMENT 
 from make_segment
 ),
- 
+
+-- добавляю столбец с прошлым значение сегмента для каждого клиента
 add_RFM_SEGMENT_CHANGING as (
 select *,
 lag(RFM_SEGMENT) over(partition by user_id order by segment_date asc) as RFM_SEGMENT_CHANGING 
