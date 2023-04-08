@@ -1,4 +1,4 @@
-## datacamp обзор
+## datacamp dbt project обзор
 
 * [PRF analysis for digital marketing](#prf-analysis)
 
