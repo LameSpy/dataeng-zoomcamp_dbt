@@ -4,17 +4,22 @@
 
 
 ## RFM analysis
-На основе полученных данных была проведена аналитика с помощью метода RFM. 
-[Для потребителей был создан дашборд с помощью Looker.](https://lookerstudio.google.com/reporting/1fdc9014-ef4a-4bdc-916b-e6b635726da1)
-<br>[Решение SQL можно посмотреть здесь.](https://github.com/LameSpy/dataeng-zoomcamp_dbt/tree/main/models/adhoc)
+Based on the obtained data, analytics was performed using the RFM method.
+[A dashboard was created for consumers using Looker.](https://lookerstudio.google.com/reporting/1fdc9014-ef4a-4bdc-916b-e6b635726da1)
+<br>[The SQL solution can be viewed here.](https://github.com/LameSpy/dataeng-zoomcamp_dbt/tree/main/models/adhoc)
 
-Полученные данные можно использовать:
-* Для оптимизации рекламных кампаний
-* Для принятия стратегических решений
-* Для оценки текущего положения
+The obtained data can be used for:
+* Optimizing advertising campaigns
+* Making strategic decisions
+* Evaluating the current situation
 
-Для реализации использовались следующие инструменты:
+The following tools were used for implementation:
 * SQL - DBT
 * BigQuery
 * Looker
 * GitHub
+
+
+
+
+
